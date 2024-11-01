@@ -58,7 +58,7 @@ namespace Components
 	const char* Branding::GetVersionString()
 	{
 		// IW4x is technically a beta
-		return Utils::String::VA("v1.1.0",
+		return Utils::String::VA("Develop",
 			BUILD_TYPE, "(Beta)", GetBuildNumber(), reinterpret_cast<const char*>(0x7170A0));
 	}
 
