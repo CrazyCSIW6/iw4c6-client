@@ -217,8 +217,6 @@ namespace Components
 			Utils::Hook::Nop(0x64CF77, 5);          // function detecting video card, causes Direct3DCreate9 to be called
 			Utils::Hook::Nop(0x60BC52, 0x15);       // recommended settings check
 
-			Utils::Hook::Nop(0x45148B, 5);          // Disable splash screen
-
 			// do not trigger host migration, even if the server is a 'bad host'
 			Utils::Hook::Set<BYTE>(0x626AA8, 0xEB);
 

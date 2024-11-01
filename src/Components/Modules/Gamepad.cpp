@@ -162,6 +162,8 @@ namespace Components
 		{Game::K_BUTTON_START, Game::K_ENTER},
 		{Game::K_BUTTON_B, Game::K_ESCAPE},
 		{Game::K_BUTTON_BACK, Game::K_ESCAPE},
+		{Game::K_BUTTON_Y, Game::K_F1},
+        {Game::K_BUTTON_X, Game::K_F2},
 		{Game::K_DPAD_UP, Game::K_UPARROW},
 		{Game::K_APAD_UP, Game::K_UPARROW},
 		{Game::K_DPAD_DOWN, Game::K_DOWNARROW},

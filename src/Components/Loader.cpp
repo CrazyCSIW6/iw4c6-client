@@ -5,7 +5,6 @@
 #include "Modules/Auth.hpp"
 #include "Modules/Bans.hpp"
 #include "Modules/Bots.hpp"
-#include "Modules/Branding.hpp"
 #include "Modules/Bullet.hpp"
 #include "Modules/CardTitles.hpp"
 #include "Modules/Ceg.hpp"
@@ -120,7 +119,6 @@ namespace Components
 		Register(new AssetHandler());
 		Register(new Bans());
 		Register(new Bots());
-		Register(new Branding());
 		Register(new Bullet());
 		Register(new CardTitles());
 		Register(new Ceg());

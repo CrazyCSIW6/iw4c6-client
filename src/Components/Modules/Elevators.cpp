@@ -110,7 +110,7 @@ namespace Components
 				nullptr
 			};
 
-			BG_Elevators = Game::Dvar_RegisterEnum("bg_elevators", values, ENABLED, Game::DVAR_CODINFO, "Elevators glitch settings");
+			BG_Elevators = Game::Dvar_RegisterEnum("bg_elevators", values, EASY, Game::DVAR_CODINFO, "Elevators glitch settings");
 		});
 
 		Utils::Hook(0x57369E, PM_CorrectAllSolidStub, HOOK_CALL).install()->quick(); // PM_GroundTrace

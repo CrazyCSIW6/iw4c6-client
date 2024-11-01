@@ -470,12 +470,7 @@ namespace Components
 	{
 		AssertIn(clientNum, Game::MAX_CLIENTS);
 
-		if (Game::SV_IsTestClient(clientNum))
-		{
-			return -1;
-		}
-
-		return Game::svs_clients[clientNum].ping;
+		return 0;
 	}
 
 	bool Bots::IsFull()
@@ -596,8 +591,8 @@ namespace Components
 
 		Utils::Hook(0x459654, SV_GetClientPing_Hk, HOOK_CALL).install()->quick();
 
-		sv_randomBotNames = Game::Dvar_RegisterBool("sv_randomBotNames", false, Game::DVAR_NONE, "Randomize the bots' names");
-		sv_replaceBots = Game::Dvar_RegisterBool("sv_replaceBots", false, Game::DVAR_NONE, "Test clients will be replaced by connecting players when the server is full.");
+		sv_randomBotNames = Game::Dvar_RegisterBool("sv_randomBotNames", true, Game::DVAR_NONE, "Randomize the bots' names");
+		sv_replaceBots = Game::Dvar_RegisterBool("sv_replaceBots", true, Game::DVAR_NONE, "Test clients will be replaced by connecting players when the server is full.");
 
 		Scheduler::OnGameInitialized(UpdateBotNames, Scheduler::Pipeline::MAIN);
 

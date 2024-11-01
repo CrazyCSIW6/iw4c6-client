@@ -11,6 +11,8 @@ namespace Components
 
 		static void UnlockStats();
 
+		static void FakeUnlockStats();
+
 	private:
 		static Dvar::Var UIMousePitch;
 

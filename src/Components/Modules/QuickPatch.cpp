@@ -17,13 +17,13 @@ namespace Components
 
 		if (Game::CL_IsCgameInitialized())
 		{
-			Toast::Show("cardicon_locked", "^1Error", "Not allowed while ingame.", 3000);
+			Toast::Show("cardicon_locked", "^1Nope", "Go back to the lobby if you wanna cheat.", 3000);
 			return;
 		}
-
 		Command::Execute("setPlayerData prestige 10");
 		Command::Execute("setPlayerData experience 2516000");
 		Command::Execute("setPlayerData iconUnlocked cardicon_prestige10_02 1");
+		Toast::Show("cardicon_prestige10_02", "^1You Dirty Cheater!", "Everything is now unlocked.", 3000);
 
 		// Unlock challenges
 		Game::StringTable* challengeTable = Game::DB_FindXAssetHeader(Game::XAssetType::ASSET_TYPE_STRINGTABLE, "mp/allchallengestable.csv").stringTable;
@@ -52,6 +52,19 @@ namespace Components
 				Command::Execute(Utils::String::VA("setPlayerData challengeProgress %s %d", challenge, maxProgress));
 			}
 		}
+	}
+
+	void QuickPatch::FakeUnlockStats()
+	{
+		if (Dedicated::IsEnabled()) return;
+
+		if (Game::CL_IsCgameInitialized())
+		{
+			Toast::Show("cardicon_locked", "^1Nope", "Go back to the lobby first.", 3000);
+			return;
+		}
+		Command::Execute("resetStats");
+		Toast::Show("cardicon_locked", "^1Nice Try", "gg ez", 10000);
 	}
 
 	Game::dvar_t* QuickPatch::g_antilag;
@@ -341,7 +354,7 @@ namespace Components
 		Utils::Hook::Set<const char*>(0x6431D1, BASEGAME);
 
 		// window title
-		Utils::Hook::Set<const char*>(0x5076A0, "IW4x: Multiplayer");
+		Utils::Hook::Set<const char*>(0x5076A0, "IW4C6 (Beta)");
 
 		// sv_hostname
 		Utils::Hook::Set<const char*>(0x4D378B, "IW4Host");
@@ -353,10 +366,6 @@ namespace Components
 		Utils::Hook::Set<const char*>(0x475F9E, BASEGAME "/images/splash.bmp");
 
 		Utils::Hook::Set<const char*>(0x4876C6, "Successfully read stats data\n");
-
-		// Numerical ping (cg_scoreboardPingText 1)
-		Utils::Hook::Set<BYTE>(0x45888E, 1);
-		Utils::Hook::Set<BYTE>(0x45888C, Game::DVAR_CHEAT);
 
 		// increase font sizes for chat on higher resolutions
 		static float float13 = 13.0f;
@@ -429,9 +438,9 @@ namespace Components
 		Utils::Hook::Set<DWORD>(0x51C2C2, 0x78A0AC);
 
 		// Redirect logs
-		Utils::Hook::Set<const char*>(0x5E44D8, "logs/games_mp.log");
-		Utils::Hook::Set<const char*>(0x60A90C, "logs/console_mp.log");
-		Utils::Hook::Set<const char*>(0x60A918, "logs/console_mp.log");
+		Utils::Hook::Set<const char*>(0x5E44D8, "logs/games_iw4c6.log");
+		Utils::Hook::Set<const char*>(0x60A90C, "logs/console_iw4c6.log");
+		Utils::Hook::Set<const char*>(0x60A918, "logs/console_iw4c6.log");
 
 		// Rename config
 		Utils::Hook::Set<const char*>(0x461B4B, CLIENT_CONFIG);
@@ -496,7 +505,8 @@ namespace Components
 			}
 		});
 
-		Command::Add("unlockstats", QuickPatch::UnlockStats);
+		Command::Add("unlockstats", QuickPatch::FakeUnlockStats);
+		Command::Add("iamadirtycheatinggoblin", QuickPatch::UnlockStats);
 
 		Command::Add("dumptechsets", [](const Command::Params* param)
 		{

@@ -555,11 +555,6 @@ namespace Components
 
 		AssertOffset(Game::playerState_s, Game::playerState_s::weapCommon.weapFlags, 0x2BC);
 		Utils::Hook(0x56E825, WeaponEntCanBeGrabbed_Stub, HOOK_JUMP).install()->quick();
-
-		// Javelin fix (PM_Weapon_OffHandEnd)
-		AssertOffset(Game::playerState_s, grenadeTimeLeft, 0x34);
-		BGWeaponOffHandFix = Game::Dvar_RegisterBool("bg_weaponOffHandFix", true, Game::DVAR_CODINFO, "Reset grenadeTimeLeft after using off hand weapon");
-		Utils::Hook(0x578F52, JavelinResetHook_Stub, HOOK_JUMP).install()->quick();
 	
 		CGRecoilMultiplier = Game::Dvar_RegisterFloat("cg_recoilMultiplier",
 			1.0f, 0.0f, 1000.0f, Game::DVAR_CHEAT,

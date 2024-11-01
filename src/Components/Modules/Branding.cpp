@@ -10,9 +10,9 @@ namespace Components
 	Dvar::Var Branding::CGDrawVersionY;
 
 #ifdef _DEBUG
-	constexpr auto* BUILD_TYPE = "IW4x_DEV MP";
+	constexpr auto* BUILD_TYPE = "IW4C6_DEV";
 #else
-	constexpr auto* BUILD_TYPE = "IW4x MP";
+	constexpr auto* BUILD_TYPE = "IW4C6";
 #endif
 
 	void Branding::CG_DrawVersion()
@@ -49,7 +49,7 @@ namespace Components
 	const char* Branding::GetBuildNumber()
 	{
 #ifdef EXPERIMENTAL_BUILD
-		return REVISION_STR "-develop latest " __DATE__ " " __TIME__;
+		return REVISION_STR "-develop "" ";
 #else
 		return REVISION_STR " latest " __DATE__ " " __TIME__;
 #endif
@@ -58,7 +58,7 @@ namespace Components
 	const char* Branding::GetVersionString()
 	{
 		// IW4x is technically a beta
-		return Utils::String::VA("%s %s build %s %s",
+		return Utils::String::VA("v1.1.0",
 			BUILD_TYPE, "(Beta)", GetBuildNumber(), reinterpret_cast<const char*>(0x7170A0));
 	}
 
@@ -101,7 +101,7 @@ namespace Components
 		RegisterBrandingDvars();
 
 		// UI version string
-		Utils::Hook::Set<const char*>(0x43F73B, "IW4x " REVISION_STR);
+		Utils::Hook::Set<const char*>(0x43F73B, "IW4C6 " REVISION_STR);
 
 		// Short version dvar
 		Utils::Hook::Set<const char*>(0x60BD91, REVISION_STR);
