@@ -1679,8 +1679,6 @@ namespace Components
 		(*keys)[0] = -1;
 		(*keys)[1] = -1;
 
-		if (gamePads[localClientNum].inUse)
-		{
 			const auto gamePadCmd = GetGamePadCommand(cmd);
 			for (auto keyNum = 0; keyNum < Game::K_LAST_KEY; keyNum++)
 			{
@@ -1699,27 +1697,6 @@ namespace Components
 					}
 				}
 			}
-		}
-		else
-		{
-			for (auto keyNum = 0; keyNum < Game::K_LAST_KEY; keyNum++)
-			{
-				if (Key_IsValidGamePadChar(keyNum))
-				{
-					continue;
-				}
-
-				if (Game::playerKeys[localClientNum].keys[keyNum].binding && std::strcmp(Game::playerKeys[localClientNum].keys[keyNum].binding, cmd) == 0)
-				{
-					(*keys)[keyCount++] = keyNum;
-
-					if (keyCount >= 2)
-					{
-						return keyCount;
-					}
-				}
-			}
-		}
 
 		return keyCount;
 	}
