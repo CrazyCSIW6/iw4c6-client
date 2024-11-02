@@ -351,9 +351,7 @@ namespace Components
 
 	void Dvar::OnRegisterVariant([[maybe_unused]] Game::dvar_t* dvar)
 	{
-#ifdef _DEBUG
 		dvar->flags &= ~Game::DVAR_CHEAT;
-#endif
 	}
 
 	__declspec(naked) void Dvar::Dvar_RegisterVariant_Stub()
