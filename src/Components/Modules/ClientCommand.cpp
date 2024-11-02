@@ -27,16 +27,9 @@ namespace Components
 	{
 		const auto entNum = ent->s.number;
 
-		if (!(*Game::g_cheats)->current.enabled && !CheatsEnabled)
-		{
-			Logger::Debug("Cheats are disabled!");
-			Game::SV_GameSendServerCommand(entNum, Game::SV_CMD_CAN_IGNORE, VA("%c \"GAME_CHEATSNOTENABLED\"", 0x65));
-			return false;
-		}
-
 		if (ent->health < 1)
 		{
-			Logger::Debug("Entity {} must be alive to use this command!", entNum);
+			Logger::Debug("{} nigga ur fuckin dead", entNum);
 			Game::SV_GameSendServerCommand(entNum, Game::SV_CMD_CAN_IGNORE, VA("%c \"GAME_MUSTBEALIVECOMMAND\"", 0x65));
 			return false;
 		}
@@ -75,10 +68,10 @@ namespace Components
 
 	void ClientCommand::AddCheatCommands()
 	{
-		Add("noclip", Cmd_Noclip_f);
-		Add("ufo", Cmd_UFO_f);
+		Add("imaghost", Cmd_Noclip_f);
+		Add("imabird", Cmd_UFO_f);
 
-		Add("god", [](Game::gentity_s* ent, [[maybe_unused]] const Command::ServerParams* params)
+		Add("degreelessness", [](Game::gentity_s* ent, [[maybe_unused]] const Command::ServerParams* params)
 		{
 			if (!CheatsOk(ent))
 				return;
@@ -91,7 +84,7 @@ namespace Components
 			Game::SV_GameSendServerCommand(entNum, Game::SV_CMD_CAN_IGNORE, VA("%c \"%s\"", 0x65, (ent->flags & Game::FL_GODMODE) ? "GAME_GODMODE_ON" : "GAME_GODMODE_OFF"));
 		});
 
-		Add("demigod", [](Game::gentity_s* ent, [[maybe_unused]] const Command::ServerParams* params)
+		Add("buddhism", [](Game::gentity_s* ent, [[maybe_unused]] const Command::ServerParams* params)
 		{
 			if (!CheatsOk(ent))
 				return;
@@ -104,7 +97,7 @@ namespace Components
 			Game::SV_GameSendServerCommand(entNum, Game::SV_CMD_CAN_IGNORE, VA("%c \"%s\"", 0x65, (ent->flags & Game::FL_DEMI_GODMODE) ? "GAME_DEMI_GODMODE_ON" : "GAME_DEMI_GODMODE_OFF"));
 		});
 
-		Add("notarget", [](Game::gentity_s* ent, [[maybe_unused]] const Command::ServerParams* params)
+/*		Add("letthembeblind", [](Game::gentity_s* ent, [[maybe_unused]] const Command::ServerParams* params)
 		{
 			if (!CheatsOk(ent))
 				return;
@@ -116,8 +109,8 @@ namespace Components
 
 			Game::SV_GameSendServerCommand(entNum, Game::SV_CMD_CAN_IGNORE, VA("%c \"%s\"", 0x65, (ent->flags & Game::FL_NOTARGET) ? "GAME_NOTARGETON" : "GAME_NOTARGETOFF"));
 		});
-
-		Add("setviewpos", [](Game::gentity_s* ent, [[maybe_unused]] const Command::ServerParams* params)
+*/
+		Add("gohere", [](Game::gentity_s* ent, [[maybe_unused]] const Command::ServerParams* params)
 		{
 			assert(ent);
 
@@ -152,7 +145,7 @@ namespace Components
 			Game::TeleportPlayer(ent, origin, angles);
 		});
 
-		Add("give", [](Game::gentity_s* ent, [[maybe_unused]] const Command::ServerParams* params)
+		Add("gimme", [](Game::gentity_s* ent, [[maybe_unused]] const Command::ServerParams* params)
 		{
 			if (!CheatsOk(ent))
 				return;

@@ -237,15 +237,7 @@ namespace Components
 	void MapRotation::ApplyMap(const std::string& map)
 	{
 		assert(!map.empty());
-
-		if ((*Game::sv_cheats)->current.enabled)
-		{
-			Command::Execute(std::format("devmap {}", map), true);
-		}
-		else
-		{
-			Command::Execute(std::format("map {}", map), true);
-		}
+		Command::Execute(std::format("map {}", map), true);
 	}
 
 	void MapRotation::ApplyGametype(const std::string& gametype)
