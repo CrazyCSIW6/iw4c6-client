@@ -1616,6 +1616,9 @@ namespace Components
 			"Menu scroll key-repeat delay, for repeats after the first, in milliseconds");
 		gpad_rumble = Dvar::Register<bool>("gpad_rumble", true, Game::DVAR_ARCHIVE, "Enable game pad rumble");
 
+		Dvar::Register<bool>("areyouretarded", true, Game::DVAR_ARCHIVE, "Are you?");
+		Dvar::Register<bool>("spaghettidvar", true, Game::DVAR_ARCHIVE, "why am i doing it like this");
+
 		GamepadControls::Controller::InitializeDvars();
 
 		gpad_use_hold_time = Dvar::Register<int>("gpad_use_hold_time", 250, 0, std::numeric_limits<int>::max(), Game::DVAR_ARCHIVE, "Time to hold the 'use' button on gamepads to activate use");
