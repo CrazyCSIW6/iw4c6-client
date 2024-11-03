@@ -11,6 +11,5 @@ As an added bonus you can play with friends and kick ass, as well as go solo and
 ## Check the Releases to get going!
 
 # Screenshots
-![image](https://github.com/user-attachments/assets/89d856ac-9d38-4ac7-b669-e8c3dd4e5341)
-![image](https://github.com/user-attachments/assets/0a2af018-d1f0-4506-8d73-0cdb66fe2388)
-![image](https://github.com/user-attachments/assets/0e743d8e-46f6-4bfb-8f36-b31fa2d53076)
+![image](https://github.com/user-attachments/assets/a14361df-13da-45c2-9623-591a0fca7de6)
+![image](https://github.com/user-attachments/assets/6488c969-8f0b-4806-a585-9cf8ec6dd422)
