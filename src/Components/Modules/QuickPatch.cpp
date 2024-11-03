@@ -691,8 +691,8 @@ namespace Components
 		Utils::Hook::Set<BYTE>(0x51B087, 2);
 		Utils::Hook::Set<BYTE>(0x60AE13, 2);
 
-		// developer_Script 1
-		Utils::Hook::Set<bool>(0x60AE2B, true);
+		// developer_Script 0 (fuck off!!!)
+		Utils::Hook::Set<bool>(0x60AE2B, false);
 
 		// Disable cheat protection for dvars
 		Utils::Hook::Set<BYTE>(0x646515, 0xEB); // Dvar_IsCheatProtected

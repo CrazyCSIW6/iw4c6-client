@@ -129,7 +129,7 @@ namespace Components
 		std::memset(VCSave, 0, sizeof(float[3]));
 		std::memset(CalcRicochetSave, 0, sizeof(float[3]));
 
-#ifdef DEBUG_RIOT_SHIELD
+#ifdef DEBUG
 		Utils::Hook(0x5D5B00, BulletRicochet_Stub, HOOK_JUMP).install()->quick();
 		Utils::Hook::Nop(0x5D5B00 + 5, 3);
 
