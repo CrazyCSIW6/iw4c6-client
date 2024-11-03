@@ -261,99 +261,20 @@ namespace Components
 		const auto listUrl = host + (download->isMap_ ? "/map" : "/list") + (download->isPrivate_ ? ("?password=" + download->hashedPassword_) : "");
 
 		const auto list = Utils::WebIO("IW4x", listUrl).setTimeout(5000)->get();
-		if (list.empty())
-		{
-			if (download->terminateThread_) return;
-
-			download->thread_.detach();
-			download->clear();
-
-			Scheduler::Once([]
-			{
-				Command::Execute("closemenu mod_download_popmenu");
-				Party::ConnectError("Failed to download the modlist!");
-			}, Scheduler::Pipeline::CLIENT);
-
-			return;
-		}
-
-		if (download->terminateThread_) return;
-
-		if (!ParseModList(download, list))
-		{
-			if (download->terminateThread_) return;
-
-			download->thread_.detach();
-			download->clear();
-
-			Scheduler::Once([]
-			{
-				Command::Execute("closemenu mod_download_popmenu");
-				Party::ConnectError("Failed to parse the modlist!");
-			}, Scheduler::Pipeline::CLIENT);
-
-			return;
-		}
-
-		if (download->terminateThread_) return;
 
 		static std::string mod;
 		mod = download->mod_;
-
-		for (std::size_t i = 0; i < download->files_.size(); ++i)
-		{
-			if (download->terminateThread_) return;
-
-			if (!DownloadFile(download, i))
-			{
-				if (download->terminateThread_) return;
-
-				mod = std::format("Failed to download file: {}!", download->files_[i].name);
-				download->thread_.detach();
-				download->clear();
-
-				Scheduler::Once([]
-				{
-					Dvar::Var("partyend_reason").set(mod);
-					mod.clear();
-
-					Command::Execute("closemenu mod_download_popmenu");
-					Command::Execute("openmenu menu_xboxlive_partyended");
-				}, Scheduler::Pipeline::CLIENT);
-
-				return;
-			}
-		}
 
 		if (download->terminateThread_) return;
 
 		download->thread_.detach();
 		download->clear();
 
-		if (download->isMap_)
-		{
-			Scheduler::Once([]
-			{
-				Command::Execute("reconnect", false);
-			}, Scheduler::Pipeline::CLIENT);
-		}
-		else
 		{
 			// Run this on the main thread
 			Scheduler::Once([]
 			{
-				Game::Dvar_SetString(*Game::fs_gameDirVar, mod.data());
-				const_cast<Game::dvar_t*>((*Game::fs_gameDirVar))->modified = true;
-
-				mod.clear();
-
 				Command::Execute("closemenu mod_download_popmenu", false);
-
-				if (ModList::cl_modVidRestart.get<bool>())
-				{
-					Command::Execute("vid_restart", false);
-				}
-
 				Command::Execute("reconnect", false);
 			}, Scheduler::Pipeline::MAIN);
 		}
@@ -810,11 +731,7 @@ namespace Components
 		{
 			if (!Flags::HasFlag("disable-mongoose"))
 			{
-#ifdef _DEBUG
 				mg_log_set(MG_LL_INFO);
-#else
-				mg_log_set(MG_LL_ERROR);
-#endif
 
 #ifdef MG_OVERRIDE_LOG_FN
 				mg_log_set_fn(LogFn, nullptr);
