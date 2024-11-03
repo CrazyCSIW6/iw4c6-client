@@ -12,5 +12,6 @@ As an added bonus you can play with friends and kick ass (including each others'
 The fuck you waitin' for? GO TO THE RELEASES GODDAMNI-
 
 # Screenshots
-![Main menu](https://github.com/CrazyCSIW6/iw4c6/assets/51261276/bee9a165-8c70-4f16-9593-cf7752ecc895)
-![Noob tube time](https://github.com/CrazyCSIW6/iw4c6/assets/51261276/98357b70-5e19-4e8e-84ae-d2b725eca5b0)
+![image](https://github.com/user-attachments/assets/89d856ac-9d38-4ac7-b669-e8c3dd4e5341)
+![image](https://github.com/user-attachments/assets/0a2af018-d1f0-4506-8d73-0cdb66fe2388)
+![image](https://github.com/user-attachments/assets/0e743d8e-46f6-4bfb-8f36-b31fa2d53076)
