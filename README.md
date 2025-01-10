@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/3a9fc3c9-10eb-45be-bb55-10a84812f0bb)
+![image](https://github.com/user-attachments/assets/4212cf7e-b5f3-4747-81b9-70feb188ea8e)
 
 ## About IW4C6
 IW4C6 is a fork of IW4x MP that aims to recreate the charm and experience of Modern Warfare 2's early days.
