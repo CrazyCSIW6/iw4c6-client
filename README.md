@@ -1,5 +1,4 @@
-# IW4C6
-![image](https://github.com/user-attachments/assets/8bd97dc5-aaf9-4421-a3d3-80508ab3ebc9)
+![image](https://github.com/user-attachments/assets/3a9fc3c9-10eb-45be-bb55-10a84812f0bb)
 
 ## About IW4C6
 IW4C6 is a singleplayer and multiplayer mod for IW4x MP.
