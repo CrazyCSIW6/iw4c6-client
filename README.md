@@ -1,13 +1,9 @@
 ![image](https://github.com/user-attachments/assets/3a9fc3c9-10eb-45be-bb55-10a84812f0bb)
 
 ## About IW4C6
-IW4C6 is a singleplayer and multiplayer mod for IW4x MP.
-The goal of IW4C6 is to keep the charm of the early MW2 era preserved in a fully offline state (but the idea is that you shouldn't even notice).
-IW4C6 includes an unfinished recreation of the UI and menus from the day-one Xbox 360 version.
-All the glitches have been restored, and patches have been reverted.
-As an added bonus you can play with friends and kick ass, as well as go solo and tell the bots to suck it. Yes, they do the same to you.
-
-## Check the Releases to get going!
+IW4C6 is a fork of IW4x MP that aims to recreate the charm and experience of Modern Warfare 2's early days.
+IW4C6 includes a recreation of the UI and menus from the day-one Xbox 360 version. All the glitches have been restored, and patches have been reverted.
+As an added bonus, bots are included (forked from Bot Warfare) and you can either go solo, or play with and against your friends.
 
 # Screenshots
 ![image](https://github.com/user-attachments/assets/a14361df-13da-45c2-9623-591a0fca7de6)
