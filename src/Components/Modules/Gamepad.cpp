@@ -1621,8 +1621,9 @@ namespace Components
 			"Menu scroll key-repeat delay, for repeats after the first, in milliseconds");
 		gpad_rumble = Dvar::Register<bool>("gpad_rumble", true, Game::DVAR_ARCHIVE, "Enable game pad rumble");
 
-		Dvar::Register<bool>("areyouretarded", true, Game::DVAR_ARCHIVE, "Are you?");
-		Dvar::Register<bool>("spaghettidvar", true, Game::DVAR_ARCHIVE, "why am i doing it like this");
+		Dvar::Register<bool>("areyouretarded", true, Game::DVAR_ARCHIVE, "Used to tell IW4x that we are using gamepad");
+		Dvar::Register<bool>("iw4c6_xpbar", true, Game::DVAR_ARCHIVE, "Show XP bar in HUD");
+		Dvar::Register<bool>("spaghettidvar", true, Game::DVAR_ARCHIVE, "Used to tell IW4x that we are using gamepad");
 
 		GamepadControls::Controller::InitializeDvars();
 
