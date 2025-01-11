@@ -274,8 +274,8 @@ namespace Components
 		Utils::Hook::Set<const char*>(0x420A6E, "xblive_privateserver");
 
 		// Remove migration shutdown, it causes crashes and will be destroyed when erroring anyways
-		// Utils::Hook::Nop(0x5A8E1C, 12);
-		// Utils::Hook::Nop(0x5A8E33, 11);
+		Utils::Hook::Nop(0x5A8E1C, 12);
+		Utils::Hook::Nop(0x5A8E33, 11);
 
 		// Enable XP Bar
 		Utils::Hook(0x62A2A7, UIDvarIntStub, HOOK_CALL).install()->quick();
@@ -344,7 +344,7 @@ namespace Components
 					if ((Game::Sys_Milliseconds() - Container.joinTime) > 10'000)
 					{
 						Container.valid = false;
-						ConnectError("Server connection timed out.");
+						ConnectError("Failed to connect to host.");
 					}
 				}
 
@@ -353,7 +353,7 @@ namespace Components
 					if ((Game::Sys_Milliseconds() - Container.requestTime) > 5'000)
 					{
 						Container.awaitingPlaylist = false;
-						ConnectError("Playlist request timed out.");
+						ConnectError("Find a match at least once and try again.");
 					}
 				}
 
