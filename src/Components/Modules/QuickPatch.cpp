@@ -405,7 +405,7 @@ namespace Components
 		Utils::Hook::Nop(0x5BB902, 5);
 
 		// disable migration_dvarErrors
-		Utils::Hook::Set<BYTE>(0x60BDA7, 0);
+		// Utils::Hook::Set<BYTE>(0x60BDA7, 0);
 
 		// allow joining 'developer 1' servers
 		Utils::Hook::Set<BYTE>(0x478BA2, 0xEB);

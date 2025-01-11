@@ -249,8 +249,8 @@ namespace Components
 		Utils::Hook::Nop(0x4E532D, 5); // PartyHost_TimeoutMembers
 
 		// Steam_JoinLobby call causes migration
-		Utils::Hook::Nop(0x5AF851, 5);
-		Utils::Hook::Set<BYTE>(0x5AF85B, 0xEB);
+		// Utils::Hook::Nop(0x5AF851, 5);
+		// Utils::Hook::Set<BYTE>(0x5AF85B, 0xEB);
 
 		// Allow xpartygo in public lobbies
 		Utils::Hook::Set<BYTE>(0x5A969E, 0xEB);
@@ -274,8 +274,8 @@ namespace Components
 		Utils::Hook::Set<const char*>(0x420A6E, "xblive_privateserver");
 
 		// Remove migration shutdown, it causes crashes and will be destroyed when erroring anyways
-		Utils::Hook::Nop(0x5A8E1C, 12);
-		Utils::Hook::Nop(0x5A8E33, 11);
+		// Utils::Hook::Nop(0x5A8E1C, 12);
+		// Utils::Hook::Nop(0x5A8E33, 11);
 
 		// Enable XP Bar
 		Utils::Hook(0x62A2A7, UIDvarIntStub, HOOK_CALL).install()->quick();

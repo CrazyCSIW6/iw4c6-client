@@ -218,10 +218,10 @@ namespace Components
 			Utils::Hook::Nop(0x60BC52, 0x15);       // recommended settings check
 
 			// do not trigger host migration, even if the server is a 'bad host'
-			Utils::Hook::Set<BYTE>(0x626AA8, 0xEB);
+			// Utils::Hook::Set<BYTE>(0x626AA8, 0xEB);
 
 			// isHost script call return 0
-			Utils::Hook::Set<DWORD>(0x5DEC04, 0);
+			// Utils::Hook::Set<DWORD>(0x5DEC04, 0);
 
 			// r_loadForRenderer default to 0
 			Utils::Hook::Set<BYTE>(0x519DDF, 0);
