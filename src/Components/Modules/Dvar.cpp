@@ -445,9 +445,9 @@ namespace Components
 		// remove write protection from fs_game
 		Utils::Hook::Xor<std::uint32_t>(0x6431EA, Game::DVAR_INIT);
 
-		// set cg_fov max to 160.0
-		// because that's the max on SP
-		static float cg_Fov = 160.0f;
+		// set cg_fov max to 65.0
+		// because zzandreaal is a fucking nigger
+		static float cg_Fov = 65.0f;
 		Utils::Hook::Set<float*>(0x4F8E28, &cg_Fov);
 
 		// set max volume to 1

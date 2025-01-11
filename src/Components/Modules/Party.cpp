@@ -212,7 +212,7 @@ namespace Components
 		Dvar::Register<bool>("xblive_privatematch", true, Game::DVAR_INIT, "");
 
 		// Kill the party migrate handler - it's not necessary and has apparently been used in the past for trickery?
-		Utils::Hook(0x46AB70, PartyMigrate_HandlePacket, HOOK_JUMP).install()->quick();
+		// Utils::Hook(0x46AB70, PartyMigrate_HandlePacket, HOOK_JUMP).install()->quick();
 
 		// various changes to SV_DirectConnect-y stuff to allow non-party joinees
 		Utils::Hook::Set<WORD>(0x460D96, 0x90E9);
@@ -284,9 +284,9 @@ namespace Components
 		Utils::Hook::Set<int>(0x79D898, 1);
 
 		// Disable host migration
-		Utils::Hook::Set<BYTE>(0x5B58B2, 0xEB);
-		Utils::Hook::Set<BYTE>(0x4D6171, 0);
-		Utils::Hook::Nop(0x4077A1, 5); // PartyMigrate_Frame
+		// Utils::Hook::Set<BYTE>(0x5B58B2, 0xEB);
+		// Utils::Hook::Set<BYTE>(0x4D6171, 0);
+		// Utils::Hook::Nop(0x4077A1, 5); // PartyMigrate_Frame
 
 		// Patch playlist stuff for non-party behavior
 		static Game::dvar_t* partyEnable = PartyEnable.get<Game::dvar_t*>();
