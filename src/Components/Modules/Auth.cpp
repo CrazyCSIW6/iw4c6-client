@@ -235,32 +235,6 @@ namespace Components
 				return;
 			}
 
-			if (xuid != GetKeyHash(connectData.publickey()))
-			{
-				Network::Send(address, "error\nXUID doesn't match the certificate!");
-				return;
-			}
-
-			// Verify the signature
-			Utils::Cryptography::ECC::Key key;
-			key.set(connectData.publickey());
-
-			if (!key.isValid() || !Utils::Cryptography::ECC::VerifyMessage(key, challenge, connectData.signature()))
-			{
-				Network::Send(address, "error\nChallenge signature was invalid!");
-				return;
-			}
-
-			// Verify the security level
-			auto ourLevel = Dvar::Var("sv_securityLevel").get<unsigned int>();
-			auto userLevel = GetZeroBits(connectData.token(), connectData.publickey());
-
-			if (userLevel < ourLevel)
-			{
-				Network::Send(address, Utils::String::VA("error\nYour security level (%d) is lower than the server's security level (%d)", userLevel, ourLevel));
-				return;
-			}
-
 			Logger::Debug("Verified XUID {:#X} ({}) from {}", xuid, userLevel, address.getString());
 			Game::SV_DirectConnect(*address.get());
 		}
