@@ -40,6 +40,7 @@ namespace Components
 	std::map<std::uint64_t, Network::Address> Party::LobbyMap;
 
 	Dvar::Var Party::PartyEnable;
+	Dvar::Var Party::NatOpen;
 
 	SteamID Party::GenerateLobbyId()
 	{
@@ -209,6 +210,7 @@ namespace Components
 		}
 
 		PartyEnable = Dvar::Register<bool>("party_enable", Dedicated::IsEnabled(), Game::DVAR_NONE, "Enable party system");
+		NatOpen = Dvar::Register<bool>("nat_force_open", Dedicated::IsEnabled(), Game::DVAR_NONE, "Force NAT Type to Open (may be required for some people)");
 		Dvar::Register<bool>("xblive_privatematch", true, Game::DVAR_INIT, "");
 
 		// Kill the party migrate handler - it's not necessary and has apparently been used in the past for trickery?
@@ -281,7 +283,8 @@ namespace Components
 		Utils::Hook(0x62A2A7, UIDvarIntStub, HOOK_CALL).install()->quick();
 
 		// Set NAT to open
-		Utils::Hook::Set<int>(0x79D898, 1);
+		static Game::dvar_t* natOpen = NatOpen.get<Game::dvar_t*>();
+		Utils::Hook::Set<Game::dvar_t**>(0x79D898, &natOpen);
 
 		// Disable host migration
 		// Utils::Hook::Set<BYTE>(0x5B58B2, 0xEB);
