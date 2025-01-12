@@ -283,6 +283,7 @@ namespace Components
 		Utils::Hook(0x62A2A7, UIDvarIntStub, HOOK_CALL).install()->quick();
 
 		// Set NAT to open
+		static Game::dvar_t* natOpen = NatOpen.get<Game::dvar_t*>();
 		static const Game::dvar_t* nat_force_open;
 		if (nat_force_open->current.enabled) // im so fucking tired...
 		{
