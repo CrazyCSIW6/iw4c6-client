@@ -980,7 +980,7 @@ namespace Components
 			});
 
 		// Set default masterServerName + port and save it 
-		Utils::Hook::Set<const char*>(0x60AD92, "server.alterware.dev");
+		Utils::Hook::Set<const char*>(0x60AD92, "master.iw4.zip");
 		Utils::Hook::Set<std::uint8_t>(0x60AD90, Game::DVAR_NONE); // masterServerName
 		Utils::Hook::Set<std::uint8_t>(0x60ADC6, Game::DVAR_NONE); // masterPort
 
