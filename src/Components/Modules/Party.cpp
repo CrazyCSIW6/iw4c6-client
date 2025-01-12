@@ -210,7 +210,7 @@ namespace Components
 		}
 
 		PartyEnable = Dvar::Register<bool>("party_enable", Dedicated::IsEnabled(), Game::DVAR_NONE, "Enable party system");
-		NatOpen = Dvar::Register<bool>("nat_force_open", Dedicated::IsEnabled(), Game::DVAR_NONE, "Force NAT Type to Open (may be required for some people)");
+		NatOpen = Dvar::Register<bool>("nat_force_open", false, Game::DVAR_NONE, "Force NAT Type to Open (may be required for some people)");
 		Dvar::Register<bool>("xblive_privatematch", true, Game::DVAR_INIT, "");
 
 		// Kill the party migrate handler - it's not necessary and has apparently been used in the past for trickery?
@@ -284,7 +284,11 @@ namespace Components
 
 		// Set NAT to open
 		static Game::dvar_t* natOpen = NatOpen.get<Game::dvar_t*>();
-		Utils::Hook::Set<Game::dvar_t**>(0x79D898, &natOpen);
+		static const Game::dvar_t* nat_force_open;
+		if (nat_force_open->current.enabled) // im so fucking tired...
+		{
+			Utils::Hook::Set<int>(0x79D898, 1);
+		}
 
 		// Disable host migration
 		// Utils::Hook::Set<BYTE>(0x5B58B2, 0xEB);
