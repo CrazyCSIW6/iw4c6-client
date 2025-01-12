@@ -450,7 +450,7 @@ namespace Components
 			}
 			else
 			{
-				info.set("matchtype", "0");
+				info.set("matchtype", "1");
 			}
 
 			info.set("wwwDownload", (Download::SV_wwwDownload.get<bool>() ? "1" : "0"));
