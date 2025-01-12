@@ -63,7 +63,7 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "CompanyName", "IW4x"
+            VALUE "CompanyName", "IW4C6"
 #ifdef _DEBUG
             VALUE "FileDescription", "IW4 client modification (DEBUG)"
 #else
@@ -71,9 +71,9 @@ BEGIN
 #endif
             VALUE "FileVersion", REVISION_STR
             VALUE "InternalName", "iw4x"
-            VALUE "LegalCopyright", "Copyright 2023 The IW4x Team. All rights reserved."
+            VALUE "LegalCopyright", "This is a beta and is subject to change."
             VALUE "OriginalFilename", "iw4x.dll"
-            VALUE "ProductName", "IW4x"
+            VALUE "ProductName", "IW4C6"
             VALUE "ProductVersion", REVISION_STR
         END
     END

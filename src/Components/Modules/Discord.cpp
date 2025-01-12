@@ -84,8 +84,8 @@ namespace Components
 		const auto* hostName = Game::cls->servername;
 		if (std::strcmp(hostName, "localhost") == 0)
 		{
-			DiscordPresence.state = "Private Match";
-			DiscordPresence.partyPrivacy = DISCORD_PARTY_PRIVATE;
+			DiscordPresence.state = "Lobby Host";
+			DiscordPresence.partyPrivacy = DISCORD_PARTY_PUBLIC;
 		}
 		else
 		{

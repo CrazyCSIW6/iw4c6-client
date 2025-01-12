@@ -133,7 +133,7 @@ namespace Components
 		if (gotOnline && (!notify || (notify && !Game::CL_IsCgameInitialized())) && !Friends::UIStreamFriendly.get<bool>())
 		{
 			Game::Material* material = Friends::CreateAvatar(user);
-			Toast::Show(material, entry->name, "is playing IW4x", 3000, [material]()
+			Toast::Show(material, entry->name, "is playing IW4C6", 3000, [material]()
 			{
 				Materials::Delete(material, true);
 			});
@@ -196,7 +196,7 @@ namespace Components
 		{
 			std::lock_guard<std::recursive_mutex> _(Friends::Mutex);
 
-			const auto modId = *reinterpret_cast<const unsigned int*>("IW4x") | 0x80000000;
+			const auto modId = *reinterpret_cast<const unsigned int*>("IW4C6") | 0x80000000;
 
 			// Split up the list
 			for (const auto& entry : Friends::FriendsList)
@@ -445,7 +445,7 @@ namespace Components
 		{
 			if (!user.online) return "Offline";
 			if (!Friends::IsOnline(user.lastTime)) return "Online";
-			if (user.server.getType() == Game::NA_BAD) return "Playing IW4x";
+			if (user.server.getType() == Game::NA_BAD) return "Playing IW4C6";
 			if (user.serverName.empty()) return Utils::String::VA("Playing on %s", user.server.getCString());
 			return Utils::String::VA("Playing %s on %s", Localization::LocalizeMapName(user.mapname.data()), user.serverName.data());
 		}
