@@ -302,8 +302,10 @@ namespace Components
 						Steam::Proxy::SteamFriends->SetPlayedWith(PlayerGuids[client][1]);
 					}
 				}
-
-				return true;
+				// Heartbeats
+				Scheduler::Once(Heartbeat, Scheduler::Pipeline::SERVER);
+				Scheduler::Loop(Heartbeat, Scheduler::Pipeline::SERVER, 2min);
+					return true;
 			});
 		}
 
