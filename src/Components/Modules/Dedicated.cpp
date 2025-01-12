@@ -280,9 +280,9 @@ namespace Components
 					ClanTags::SendClanTagsToClients();
 				}, Scheduler::Pipeline::SERVER, 10s);
 
-				// Heartbeats
-				Scheduler::Once(Heartbeat, Scheduler::Pipeline::SERVER);
-				Scheduler::Loop(Heartbeat, Scheduler::Pipeline::SERVER, 2min);
+				// Heartbeats (this isn't ready yet)
+				// Scheduler::Once(Heartbeat, Scheduler::Pipeline::SERVER);
+				// Scheduler::Loop(Heartbeat, Scheduler::Pipeline::SERVER, 2min);
 			}
 		}
 		else
@@ -302,9 +302,9 @@ namespace Components
 						Steam::Proxy::SteamFriends->SetPlayedWith(PlayerGuids[client][1]);
 					}
 				}
-				// Heartbeats
-				Scheduler::Once(Heartbeat, Scheduler::Pipeline::SERVER);
-				Scheduler::Loop(Heartbeat, Scheduler::Pipeline::SERVER, 2min);
+				// Heartbeats (this isn't ready yet)
+				// Scheduler::Once(Heartbeat, Scheduler::Pipeline::SERVER);
+				// Scheduler::Loop(Heartbeat, Scheduler::Pipeline::SERVER, 2min);
 					return true;
 			});
 		}
