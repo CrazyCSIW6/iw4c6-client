@@ -157,6 +157,10 @@ namespace Components
 		LobbyMap[id.bits] = Container.target;
 
 		Game::Steam_JoinLobby(id, 0);
+		if (Container.matchType == 0)
+		{
+			Command::Execute("wait 10;openmenu menu_xboxlive");
+		}
 	}
 
 	void Party::PlaylistError(const std::string& error)
@@ -450,7 +454,7 @@ namespace Components
 			}
 			else
 			{
-				info.set("matchtype", "1");
+				info.set("matchtype", "0");
 			}
 
 			info.set("wwwDownload", (Download::SV_wwwDownload.get<bool>() ? "1" : "0"));
@@ -493,28 +497,24 @@ namespace Components
 
 					if (info.get("challenge") != Container.challenge)
 					{
-						ConnectError("Invalid join response: Challenge mismatch.");
+						ConnectError("Invalid join response.");
 					}
 					else if (securityLevel > Auth::GetSecurityLevel())
 					{
 						Command::Execute("closemenu popup_reconnectingtoparty");
 						Auth::IncreaseSecurityLevel(securityLevel, "reconnect");
 					}
-					else if (!Container.matchType)
-					{
-						ConnectError("Server is not hosting a match.");
-					}
 					else if (Container.matchType > 2 || Container.matchType < 0)
 					{
-						ConnectError("Invalid join response: Unknown matchtype");
+						ConnectError("Invalid join response.");
 					}
 					else if (Container.info.get("mapname").empty() || Container.info.get("gametype").empty())
 					{
 						ConnectError("Invalid map or gametype.");
 					}
-					else if (Container.info.get("isPrivate") == "1"s && Dvar::Var("password").get<std::string>().empty())
+					else if (Container.info.get("isPrivate") == "1"s)
 					{
-						ConnectError("A password is required to join this server! Set it at the bottom of the serverlist.");
+						ConnectError("This party is private.");
 					}
 					else if (isUsermap && usermapHash != Maps::GetUsermapHash(info.get("mapname")))
 					{
@@ -545,7 +545,21 @@ namespace Components
 
 						Container.motd = TextRenderer::StripMaterialTextIcons(info.get("sv_motd"));
 
-						if (Container.matchType == 1) // Party
+						if (Container.matchType == 0) // Party
+						{
+							// Send playlist request
+							Container.requestTime = Game::Sys_Milliseconds();
+							Container.awaitingPlaylist = true;
+							Network::SendCommand(Container.target, "getplaylist", Dvar::Var("password").get<std::string>());
+
+							// This is not a safe method
+							// TODO: Fix actual error!
+							if (Game::CL_IsCgameInitialized())
+							{
+								Command::Execute("disconnect", true);
+							}
+						}
+						if (Container.matchType == 1) // Lobby
 						{
 							// Send playlist request
 							Container.requestTime = Game::Sys_Milliseconds();
@@ -577,7 +591,7 @@ namespace Components
 
 							if (clients >= maxClients)
 							{
-								ConnectError("@EXE_SERVERISFULL");
+								ConnectError("The lobby you're trying to join is full.");
 							}
 							else
 							{

@@ -28,9 +28,9 @@ namespace Components
 		if (Flags::HasFlag("version"))
 		{
 #ifdef EXPERIMENTAL_BUILD
-			printf("%s", "IW4x " REVISION_STR "-develop (built " __DATE__ " " __TIME__ ")\n");
+			printf("%s", "IW4C6 " REVISION_STR "-develop (built " __DATE__ " " __TIME__ ")\n");
 #else
-			printf("%s", "IW4x " REVISION_STR " (built " __DATE__ " " __TIME__ ")\n");
+			printf("%s", "IW4C6 " REVISION_STR " (built " __DATE__ " " __TIME__ ")\n");
 #endif
 
 			ExitProcess(EXIT_SUCCESS);

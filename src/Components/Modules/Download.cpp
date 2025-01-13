@@ -59,7 +59,7 @@ namespace Components
 			if (password.empty())
 			{
 				// shouldn't ever happen but this is safe
-				Party::ConnectError("A password is required to connect to this server!");
+				Party::ConnectError("This party is private.");
 				return;
 			}
 
@@ -169,7 +169,7 @@ namespace Components
 			Scheduler::Once([]
 			{
 				Command::Execute("closemenu mod_download_popmenu");
-				Party::ConnectError("HTTPS not supported for downloading!");
+				Party::ConnectError("This error should never fucking happen.");
 			}, Scheduler::Pipeline::CLIENT);
 
 			return false;
@@ -271,7 +271,7 @@ namespace Components
 			Scheduler::Once([]
 			{
 				Command::Execute("closemenu mod_download_popmenu");
-				Party::ConnectError("Failed to download the modlist!");
+				Party::ConnectError("You don't have the mod the host is playing.");
 			}, Scheduler::Pipeline::CLIENT);
 
 			return;
@@ -289,7 +289,7 @@ namespace Components
 			Scheduler::Once([]
 			{
 				Command::Execute("closemenu mod_download_popmenu");
-				Party::ConnectError("Failed to parse the modlist!");
+				Party::ConnectError("Oh fuck. Please contact CrazyCSIW6.");
 			}, Scheduler::Pipeline::CLIENT);
 
 			return;

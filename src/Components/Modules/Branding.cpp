@@ -137,19 +137,19 @@ namespace Components
 		// Console title
 		if (ZoneBuilder::IsEnabled())
 		{
-			Utils::Hook::Set<const char*>(0x4289E8, "IW4x (" REVISION_STR "): ZoneBuilder");
+			Utils::Hook::Set<const char*>(0x4289E8, "IW4C6 (" REVISION_STR "): ZoneBuilder");
 		}
 		else if (Dedicated::IsEnabled())
 		{
 #ifdef EXPERIMENTAL_BUILD
-			Utils::Hook::Set<const char*>(0x4289E8, "IW4x " REVISION_STR "-develop: Dedicated");
+			Utils::Hook::Set<const char*>(0x4289E8, "IW4C6 " REVISION_STR "-develop: Dedicated");
 #else
-			Utils::Hook::Set<const char*>(0x4289E8, "IW4x " REVISION_STR ": Dedicated");
+			Utils::Hook::Set<const char*>(0x4289E8, "IW4C6 " REVISION_STR ": Dedicated");
 #endif
 		}
 		else
 		{
-			Utils::Hook::Set<const char*>(0x4289E8, "IW4x (" REVISION_STR "): Console");
+			Utils::Hook::Set<const char*>(0x4289E8, "IW4C6 (" REVISION_STR "): Console");
 		}
 	}
 }
