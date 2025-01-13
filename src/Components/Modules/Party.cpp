@@ -157,10 +157,6 @@ namespace Components
 		LobbyMap[id.bits] = Container.target;
 
 		Game::Steam_JoinLobby(id, 0);
-		if (Container.matchType == 0)
-		{
-			Command::Execute("wait 10;openmenu menu_xboxlive");
-		}
 	}
 
 	void Party::PlaylistError(const std::string& error)
